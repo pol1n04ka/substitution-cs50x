@@ -1,6 +1,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
+#include <cs50.h>
 
 void PrintUsage();
 int ValidateKey(char *key);
@@ -22,14 +23,14 @@ int main(int argc, char *argv[]) {
   if (!ValidateKey(key))
     return 1;
 
-  char str[] = "Hello, world!";
+  char *str = get_string("Enter text to encrypt: ");
   EncryptText(key, str);
 
   return 0;
 }
 
 void PrintUsage() {
-  printf("Usage: ./substitution key\n");
+  printf("\nUsage: ./substitution key\n");
   printf("Key must be 26 characters long and contain only unique alfabetic "
          "characters.\n");
 }
@@ -76,8 +77,6 @@ int CheckDuplicates(char *key) {
 
   return 0;
 }
-
-// TODO: add code to take user input.
 
 // Encrypts text based on uppercased key.
 void EncryptText(char *key, char *text) {
